@@ -24,7 +24,7 @@
 ```
 docker run -d \
 --name=webhook-to-telebot \
---restart=always \
+--restart=unless-stopped \
 -P 5000:5000 \
 -e PORT=5000 \
 -e TEXT_COUNT=10 \
