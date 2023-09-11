@@ -88,14 +88,14 @@ Hello World
 ---
 
 ## 常见问题与解决方法
-问题: 收到了 `Request too large` 错误, 怎么办?
+问题: 我收到了 `Request too large` 错误, 怎么办?
 
 答: 确保你发送的请求主体不超过 `10KB` （目前设定 `10KB` ）
 
-问题: 收到了 `401` 响应，这是什么原因？
+问题: 我收到了 `401` 响应，这是什么原因？
 
 答: 确保你在发送请求时提供了正确的 `AUTH_TOKEN` 例如: `Authorization: password`
 
-问题: 如何知道我的 `Telegram chat ID` ？
+问题: 我如何知道我的 `Telegram chat ID` ？
 
 答: 可以通过向 `@userinfobot` 发送消息来获取 `Telegram chat ID`
