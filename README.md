@@ -28,10 +28,10 @@ docker run -d \
 -P 5000:5000 \
 -e PORT=5000 \
 -e TEXT_COUNT=10 \
--e WEBHOOK_PATH='/webhook'
--e BOT_TOKEN='YOUR_BOT_TOKEN'
--e CHAT_ID='YOUR_CHAT_ID'
--e AUTH_TOKEN='YOUR_AUTH_TOKEN'
+-e WEBHOOK_PATH='/webhook' \
+-e BOT_TOKEN='YOUR_BOT_TOKEN' \
+-e CHAT_ID='YOUR_CHAT_ID' \
+-e AUTH_TOKEN='YOUR_AUTH_TOKEN' \
 yesmydark/webhook-to-telebot:latest
 ```
 ### 环境变量
