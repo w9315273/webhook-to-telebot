@@ -1,0 +1,2 @@
+项目概述
+此Go应用程序充当一个Webhook服务，可以接收HTTP请求并将其转发到Telegram bot。请求主体应包含要发送到Telegram的消息。
