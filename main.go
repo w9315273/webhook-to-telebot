@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -54,12 +53,12 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 
 	token := r.Header.Get("Authorization")
 	if token != authToken {
-		http.Error(w, "·¢ËÍÊ§°Ü", http.StatusUnauthorized)
+		http.Error(w, "Fail", http.StatusUnauthorized)
 		return
 	}
 
 	if r.Header.Get("Content-Type") != "application/json" {
-		http.Error(w, "·¢ËÍÊ§°Ü", http.StatusUnsupportedMediaType)
+		http.Error(w, "Fail", http.StatusUnsupportedMediaType)
 		return
 	}
 
@@ -67,9 +66,9 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&data)
 	if err != nil {
 		if err.Error() == "http: request body too large" {
-			http.Error(w, "ÇëÇóÌåÌ«´ó", http.StatusRequestEntityTooLarge)
+			http.Error(w, "Request too large", http.StatusRequestEntityTooLarge)
 		} else {
-			http.Error(w, "·¢ËÍÊ§°Ü", http.StatusInternalServerError)
+			http.Error(w, "Fail", http.StatusInternalServerError)
 		}
 		return
 	}
@@ -89,7 +88,7 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 
 	jsonData, err := json.Marshal(payload)
 	if err != nil {
-		http.Error(w, "·¢ËÍÊ§°Ü", http.StatusInternalServerError)
+		http.Error(w, "Fail", http.StatusInternalServerError)
 		return
 	}
 
@@ -108,11 +107,11 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err != nil || resp == nil || resp.StatusCode != http.StatusOK {
-		http.Error(w, "·¢ËÍÊ§°Ü", http.StatusInternalServerError)
+		http.Error(w, "Fail", http.StatusInternalServerError)
 		return
 	}
 
-	fmt.Fprint(w, "·¢ËÍ³É¹¦")
+	fmt.Fprint(w, "OK")
 }
 
 func main() {
