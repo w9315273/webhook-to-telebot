@@ -39,7 +39,7 @@ yesmydark/webhook-to-telebot:latest
 
 `TEXT_COUNT` 指定应提取的文本部分的数量, 默认为10条 `text1` `text2` `text3`......`text10`
 
-`WEBHOOK_PATH` 服务的路由路径, 例如 `/webhook`
+`WEBHOOK_PATH` 服务的路由路径, 例如 `/webhook` 请求地址为 `localhost:5000/webhook` `example.com:5000/webhook`
 
 `BOT_TOKEN` 你的 `Telegram bot api token`
 
