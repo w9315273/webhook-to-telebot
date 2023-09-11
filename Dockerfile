@@ -8,6 +8,7 @@ RUN cp -r /etc/ssl/certs /tmp/certs
 
 FROM scratch
 
+ENV TEXT_COUNT=10
 ENV PORT=5000
 ENV WEBHOOK_PATH=/webhook
 ENV BOT_TOKEN=YOUR_BOT_TOKEN
