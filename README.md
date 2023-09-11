@@ -11,17 +11,17 @@
 ---
 
 ## 项目概述
-这是一个基于 Go 的 Webhook 服务, 它可以接收 HTTP 请求并将其转发到 Telegram bot 属于一个中间层/代理
+- 这是一个基于 Go 的 Webhook 服务, 它可以接收 HTTP 请求并将其转发到 Telegram bot 属于一个中间层/代理
 
 ### 优势
 #### 避免直接暴露: 
-不需要在其他应用或服务中直接使用或存储 Telegram bot token, 通过将 bot token 存储在此服务中, 可以为其添加一层保护, 防止不当使用或泄露
+- 不需要在其他应用或服务中直接使用或存储 Telegram bot token, 通过将 bot token 存储在此服务中, 可以为其添加一层保护, 防止不当使用或泄露
 
 #### 容错和重试机制:
-当网络连接不稳定或 Telegram API 有短暂的中断时, 服务内置的重试逻辑确保消息有很高的可能性被成功发送
+- 当网络连接不稳定或 Telegram API 有短暂的中断时, 服务内置的重试逻辑确保消息有很高的可能性被成功发送
 
 #### 容器化支持:
-通过 Docker 容器化技术, 可以在任何支持 Docker 的平台上轻松地部署此服务, 无需担心依赖性或环境差异
+- 通过 Docker 容器化技术, 可以在任何支持 Docker 的平台上轻松地部署此服务, 无需担心依赖性或环境差异
 
 ---
 
@@ -41,28 +41,28 @@ docker run -d \
 yesmydark/webhook-to-telebot:latest
 ```
 ### 环境变量
-`PORT` 服务监听的端口,默认为 `5000`
+- `PORT` 服务监听的端口,默认为 `5000`
 
-`TEXT_COUNT` 指定应提取的文本部分的数量, 默认为10条 `text1` `text2` `text3`......`text10`
+- `TEXT_COUNT` 指定应提取的文本部分的数量, 默认为10条 `text1` `text2` `text3`......`text10`
 
-`WEBHOOK_PATH` 服务的路由路径, 例如 `/webhook` 请求地址为 `localhost:5000/webhook` `example.com:5000/webhook`
+- `WEBHOOK_PATH` 服务的路由路径, 例如 `/webhook` 请求地址为 `localhost:5000/webhook` `example.com:5000/webhook`
 
-`BOT_TOKEN` 你的 `Telegram bot api token`
+- `BOT_TOKEN` 你的 `Telegram bot api token`
 
-`CHAT_ID` 你的 `Telegram chat ID` 消息将被发送到这里
+- `CHAT_ID` 你的 `Telegram chat ID` 消息将被发送到这里
 
-`AUTH_TOKEN` 自定义用于验证 HTTP 请求的令牌
+- `AUTH_TOKEN` 自定义用于验证 HTTP 请求的令牌
 
 ---
 
 ## 请求格式
-请求应该使用 JSON 格式发送
+- 请求应该使用 JSON 格式发送
 
-内容类型 / HTTP 标头为 `application/json`
+- 内容类型 / HTTP 标头为 `application/json`
 
-另一个标头为 `Authorization: 你设置的令牌`
+- 另一个标头为 `Authorization: 你设置的令牌`
 
-HTTP 请求主体应包含 `text1` `text2` 等键 例如
+- HTTP 请求主体应包含 `text1` `text2` 等键 例如
 ```
 {
   "text1": "Hello World",
@@ -71,11 +71,11 @@ HTTP 请求主体应包含 `text1` `text2` 等键 例如
 }
 ```
 
-每个键对应于要发送的消息的一部分
+- 每个键对应于要发送的消息的一部分
 
-这些部分将被合并, 并作为一条消息发送到 Telegram bot
+- 这些部分将被合并, 并作为一条消息发送到 Telegram bot
 
-Telegram bot 将会向你发送以下内容
+- Telegram bot 将会向你发送以下内容
 ```
 Hello World
 消息2
@@ -85,23 +85,23 @@ Hello World
 ---
 
 ## 安全性建议
-不要将 `AUTH_TOKEN` `BOT_TOKEN` 或任何其他敏感数据公开或与他人共享
+- 不要将 `AUTH_TOKEN` `BOT_TOKEN` 或任何其他敏感数据公开或与他人共享
 
-始终确保你的服务在防火墙之后运行, 并只允许受信任的来源访问
+- 始终确保你的服务在防火墙之后运行, 并只允许受信任的来源访问
 
-使用 HTTPS 来增强通信的安全性 比如使用 Nginx Caddy 等反向代理添加 HTTPS 支持
+- 使用 HTTPS 来增强通信的安全性 比如使用 Nginx Caddy 等反向代理添加 HTTPS 支持
 
 ---
 
 ## 常见问题与解决方法
-问题: 我收到了 `Request too large` 错误, 怎么办?
+- 问题: 我收到了 `Request too large` 错误, 怎么办?
 
-答: 确保你发送的请求主体不超过 `10KB` （目前设定 `10KB` ）
+- 答: 确保你发送的请求主体不超过 `10KB` （目前设定 `10KB` ）
 
-问题: 我收到了 `401` 响应，这是什么原因？
+- 问题: 我收到了 `401` 响应，这是什么原因？
 
-答: 确保你在发送请求时提供了正确的 `AUTH_TOKEN` 例如: `Authorization: password`
+- 答: 确保你在发送请求时提供了正确的 `AUTH_TOKEN` 例如: `Authorization: password`
 
-问题: 我如何知道我的 `Telegram chat ID` ？
+- 问题: 我如何知道我的 `Telegram chat ID` ？
 
-答: 可以通过向 `@userinfobot` 发送消息来获取 `Telegram chat ID`
+- 答: 可以通过向 `@userinfobot` 发送消息来获取 `Telegram chat ID`
